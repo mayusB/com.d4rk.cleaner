@@ -7,6 +7,7 @@ jobs:
     - script: |
         python -m pip install --upgrade pip
         pip install semgrep
+        echo $(System.PullRequest.PullRequestId)
         if [ $(Build.SourceBranchName) = "master" ]; then
             echo "Semgrep full scan"
             semgrep login
@@ -20,5 +21,7 @@ jobs:
             semgrep ci
         fi
       env:
-        SEMGREP_APP_TOKEN: $(SEMGREP_APP_TOKEN)    
+        SEMGREP_APP_TOKEN: $(SEMGREP_APP_TOKEN)
+        SEMGREP_BASELINE_REF: 'origin/master'
+        SEMGREP_PR_ID: $(System.PullRequest.PullRequestNumber)    
         
