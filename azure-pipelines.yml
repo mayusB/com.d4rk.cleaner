@@ -21,6 +21,4 @@ jobs:
         fi
       env:
         SEMGREP_APP_TOKEN: $(SEMGREP_APP_TOKEN)
-        SEMGREP_BASELINE_REF: 'origin/master'
-        SEMGREP_PR_ID: $(System.PullRequest.PullRequestNumber)    
-        
+        SEMGREP_BASELINE_REF: 'origin/master'        
