@@ -9,7 +9,7 @@ jobs:
         pip install semgrep
         if [ $(Build.SourceBranchName) = "master" ]; then
             echo "Semgrep full scan"
-            semgrep scan
+            semgrep ci
         elif [ $(System.PullRequest.PullRequestId) -ge 0 ]; then
             echo "Semgrep diff scan"
             export SEMGREP_PR_ID=$(System.PullRequest.PullRequestId)
