@@ -11,7 +11,7 @@ jobs:
             echo "Semgrep full scan"
             semgrep login
             semgrep ci
-        elif [ $(Build.SourceBranchName) != "master" ]
+        elif [ $(Build.SourceBranchName) != "master" ];
             echo "Semgrep diff scan"
             echo "Pull Request Scan from branch: $(Build.SourceBranchName)"
             git fetch origin master:origin/master
