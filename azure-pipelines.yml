@@ -21,10 +21,10 @@ steps:
     if [ $(Build.SourceBranchName) = "master" ]; then
         echo "Semgrep full scan"
         semgrep ci
-    # elif [ $(System.PullRequest.PullRequestId) -ge 0 ]; then
-    #     echo "Semgrep diff scan"
-    #     export SEMGREP_PR_ID=$(System.PullRequest.PullRequestId)
-    #     export SEMGREP_BASELINE_REF='origin/master'
-    #     git fetch origin master:origin/master
-    #     semgrep ci 
+    elif [ $(System.PullRequest.PullRequestId) -ge 0 ]; then
+        echo "Semgrep diff scan"
+        export SEMGREP_PR_ID=$(System.PullRequest.PullRequestId)
+        export SEMGREP_BASELINE_REF='origin/master'
+        git fetch origin master:origin/master
+        semgrep ci 
     fi
