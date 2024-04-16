@@ -18,7 +18,7 @@ steps:
     python -m pip install --upgrade pip
     pip install semgrep
     echo $(Build.SourceBranchName)
-    if [ $(Build.SourceBranchName) = "main" ]; then
+    if [ $(Build.SourceBranchName) = "master" ]; then
         echo "Semgrep full scan"
         semgrep ci
     # elif [ $(System.PullRequest.PullRequestId) -ge 0 ]; then
