@@ -7,17 +7,18 @@ jobs:
     - script: |
         python -m pip install --upgrade pip
         pip install semgrep
+        echo $(System.PullRequest.PullRequestNumber)
         if [ $(Build.SourceBranchName) = "master" ]; then
             echo "Semgrep full scan"
             semgrep login
             semgrep ci
-        elif [ $(System.PullRequest.PullRequestId) -ge 0 ]; then
+        elif [ $(Build.SourceBranchName) != "master" ]
             echo "Semgrep diff scan"
-            export SEMGREP_PR_ID=$(System.PullRequest.PullRequestId)
-            export SEMGREP_BASELINE_REF='origin/master'
+            echo "Pull Request Scan from branch: $(Build.SourceBranchName)"
             git fetch origin master:origin/master
+            semgrep login
             semgrep ci
         fi
       env:
-        SEMGREP_APP_TOKEN: $(SEMGREP_APP_TOKEN)    
-        
+        SEMGREP_APP_TOKEN: $(SEMGREP_APP_TOKEN)
+        SEMGREP_BASELINE_REF: 'origin/master'        
