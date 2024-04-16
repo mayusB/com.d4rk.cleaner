@@ -7,7 +7,6 @@ jobs:
     - script: |
         python -m pip install --upgrade pip
         pip install semgrep
-        echo $(System.PullRequest.PullRequestNumber)
         if [ $(Build.SourceBranchName) = "master" ]; then
             echo "Semgrep full scan"
             semgrep login
