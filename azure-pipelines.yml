@@ -16,6 +16,7 @@ jobs:
             export SEMGREP_PR_ID=$(System.PullRequest.PullRequestId)
             export SEMGREP_BASELINE_REF='origin/master'
             git fetch origin master:origin/master
+            semgrep login
             semgrep ci
         fi
       env:
