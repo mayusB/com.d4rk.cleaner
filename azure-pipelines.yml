@@ -8,8 +8,7 @@ jobs:
      repo1:
        repo: 'app'
      repo2:
-       repo: 'gradle'       
-       
+       repo: 'gradle'             
   steps:
     - script: |
         python -m pip install --upgrade pip
